@@ -46,8 +46,12 @@ document.querySelector("#search-text").addEventListener("input", function (e) {
 });
 
 document.querySelector("#for-fun").addEventListener("change", function (e) {
-  const completed = toDo.filter(function (todos) {
-    return !todos.completed;
-  });
-  renderToDos(completed, filters);
+  if (e.target.checked) {
+    const completed = toDo.filter(function (todos) {
+      return !todos.completed;
+    });
+    renderToDos(completed, filters);
+  } else {
+    renderToDos(toDo, filters);
+  }
 });
