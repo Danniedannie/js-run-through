@@ -44,6 +44,10 @@ document.querySelector("#search-text").addEventListener("input", function (e) {
 
 document.querySelector("#name-form").addEventListener("submit", function (e) {
   e.preventDefault();
+  if (e == "") {
+    alert("Please add a to do");
+    return false;
+  }
   console.log(e.target.elements.firstName.value);
   e.target.elements.firstName.value = "";
 });
