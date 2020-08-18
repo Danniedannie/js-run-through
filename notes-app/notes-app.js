@@ -42,12 +42,12 @@ document.querySelector("#search-text").addEventListener("input", function (e) {
   renderNotes(notes, filters);
 });
 
-document.querySelector("#name-form").addEventListener("submit", function (e) {
-  e.preventDefault();
-  if (e == "") {
-    alert("Please add a to do");
-    return false;
-  }
-  console.log(e.target.elements.firstName.value);
-  e.target.elements.firstName.value = "";
+document.querySelector("#for-fun").addEventListener("change", function (e) {
+  console.log(e.target.checked);
+  notes.forEach(function (test) {
+    if (e.target.checked) {
+      test.completed = true;
+    }
+    console.log(notes);
+  });
 });
