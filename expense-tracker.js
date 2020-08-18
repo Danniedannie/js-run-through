@@ -3,10 +3,16 @@ const account = {
   expenses: [],
   income: [],
   addExpense(description, amount) {
-    this.expenses.push({ description, amount });
+    this.expenses.push({
+      description: description,
+      amount: amount,
+    });
   },
   addIncome(description, amount) {
-    this.income.push({ description, amount });
+    this.income.push({
+      description: description,
+      amount: amount,
+    });
   },
   getAccountSummary() {
     let totalExpenses = 0;
@@ -22,10 +28,6 @@ const account = {
     }, a total in expenses of ${totalExpenses}`;
   },
 };
-
-//1. add income array
-//2. add income method and description, amount
-//#. tweak getAccountSummary
 
 account.addExpense("yummy", 11.3);
 account.addExpense("yummy", 11.5);
