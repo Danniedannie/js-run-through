@@ -23,7 +23,6 @@ const renderToDos = function (toDo, filters) {
   });
 
   document.querySelector("#todos").innerHTML = "";
-
   const incompleteToDos = toDo.filter(function (todo) {
     return !todo.completed;
   });
@@ -40,12 +39,18 @@ const renderToDos = function (toDo, filters) {
 };
 renderToDos(toDo, filters);
 
-document.querySelector("#addButton").addEventListener("click", function (e) {
-  e.target.textContent = "I was clicked";
-});
-
 document.querySelector("#search-text").addEventListener("input", function (e) {
   filters.searchTerms = e.target.value;
   console.log(filters.searchTerms);
   renderToDos(toDo, filters);
+});
+
+document.querySelector("#newToDo").addEventListener("submit", function (e) {
+  e.preventDefault();
+  toDo.push({ title: e.target.toDoTextValue.value, completed: false });
+  const todoEl = document.createElement("p");
+  todoEl.textContent = e.target.toDoTextValue.value;
+  document.querySelector("#todos").appendChild(todoEl);
+  console.log(toDo);
+  e.target.toDoTextValue.value = "";
 });
