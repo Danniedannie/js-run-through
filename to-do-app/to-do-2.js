@@ -45,16 +45,9 @@ document.querySelector("#search-text").addEventListener("input", function (e) {
   renderToDos(toDo, filters);
 });
 
-document.querySelector("#newToDo").addEventListener("submit", function (e) {
-  e.preventDefault();
-  if (e.target.elements.toDoTextValue.value == "") {
-    alert("Please add a to do");
-    return false;
-  }
-  toDo.push({ title: e.target.toDoTextValue.value, completed: false });
-  const todoEl = document.createElement("p");
-  todoEl.textContent = e.target.toDoTextValue.value;
-  document.querySelector("#todos").appendChild(todoEl);
-  console.log(toDo);
-  e.target.toDoTextValue.value = "";
+document.querySelector("#for-fun").addEventListener("change", function (e) {
+  const completed = toDo.filter(function (todos) {
+    return !todos.completed;
+  });
+  renderToDos(completed, filters);
 });
