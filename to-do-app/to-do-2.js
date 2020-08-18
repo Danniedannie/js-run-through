@@ -47,6 +47,10 @@ document.querySelector("#search-text").addEventListener("input", function (e) {
 
 document.querySelector("#newToDo").addEventListener("submit", function (e) {
   e.preventDefault();
+  if (e.target.elements.toDoTextValue.value == "") {
+    alert("Please add a to do");
+    return false;
+  }
   toDo.push({ title: e.target.toDoTextValue.value, completed: false });
   const todoEl = document.createElement("p");
   todoEl.textContent = e.target.toDoTextValue.value;
