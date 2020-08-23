@@ -1,21 +1,15 @@
-const notes = [
-  {
-    title: "c",
-    completed: true,
-  },
-  {
-    title: "b",
-    completed: false,
-  },
-  {
-    title: "a",
-    completed: false,
-  },
-];
+let notes = [];
 
 const filters = {
   searchText: "",
 };
+
+//check for existing saved data
+const notesJSON = localStorage.getItem("notes");
+
+if (notesJSON !== null) {
+  notes = JSON.parse(notesJSON);
+}
 
 const renderNotes = function (notes, filters) {
   const filteredNotes = notes.filter(function (note) {
@@ -26,7 +20,11 @@ const renderNotes = function (notes, filters) {
 
   filteredNotes.forEach(function (note) {
     const noteEl = document.createElement("p");
-    noteEl.textContent = note.title;
+    if (note.title.length > 0) {
+      noteEl.textContent = note.title;
+    } else {
+      noteEl.textContent = "unamed note";
+    }
     document.querySelector("#notes").appendChild(noteEl);
   });
 };
@@ -34,7 +32,12 @@ const renderNotes = function (notes, filters) {
 renderNotes(notes, filters);
 
 document.querySelector("#hello2").addEventListener("click", function (e) {
-  e.target.textContent = "Delete all notes";
+  notes.push({
+    title: "",
+    body: "",
+  });
+  localStorage.setItem("notes", JSON.stringify(notes));
+  renderNotes(notes, filters);
 });
 
 document.querySelector("#search-text").addEventListener("input", function (e) {
@@ -42,12 +45,6 @@ document.querySelector("#search-text").addEventListener("input", function (e) {
   renderNotes(notes, filters);
 });
 
-document.querySelector("#for-fun").addEventListener("change", function (e) {
-  console.log(e.target.checked);
-  notes.forEach(function (test) {
-    if (e.target.checked) {
-      test.completed = true;
-    }
-    console.log(notes);
-  });
+document.querySelector("#filter-by").addEventListener("change", function (e) {
+  console.log(e.target.value);
 });
