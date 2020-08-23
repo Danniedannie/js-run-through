@@ -31,9 +31,9 @@ const renderNotes = function (notes, filters) {
 
 renderNotes(notes, filters);
 
-document.querySelector("#hello2").addEventListener("click", function (e) {
+document.querySelector("#testing").addEventListener("click", function (e) {
   notes.push({
-    title: "",
+    title: e.target.value,
     body: "",
   });
   localStorage.setItem("notes", JSON.stringify(notes));

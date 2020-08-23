@@ -32,11 +32,7 @@ const renderToDos = function (toDo, filters) {
 
   filteredNotes.forEach(function (todo) {
     const noteEl = document.createElement("p");
-    if (noteEl.title === "") {
-      noteEl.innerHTML = "unamed toDos";
-    } else {
-      noteEl.innerHTML = todo.title;
-    }
+    noteEl.innerHTML = todo.title;
     document.querySelector("#todos").appendChild(noteEl);
   });
 };
@@ -62,16 +58,19 @@ document.querySelector("#search-text").addEventListener("input", function (e) {
 
 //alternative to the above checkbox logic
 
-document.querySelector("#for-fun").addEventListener("change", function (e) {
-  filters.hideCompleted = e.target.checked;
-  renderToDos(toDo, filters);
-});
+// document.querySelector("#for-fun").addEventListener("change", function (e) {
+//   filters.hideCompleted = e.target.checked;
+//   renderToDos(toDo, filters);
+// });
 
-document.querySelector("#newToDo").addEventListener("click", function (e) {
+document.querySelector("#new-todo").addEventListener("submit", function (e) {
+  e.preventDefault;
   toDo.push({
-    title: "",
+    title: e.target.elements.text.value,
     completed: false,
   });
   localStorage.setItem("todo", JSON.stringify(toDo));
   renderToDos(toDo, filters);
+  e.target.elements.text.value = "";
 });
+console.log(toDo);
