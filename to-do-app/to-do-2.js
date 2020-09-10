@@ -15,12 +15,13 @@ document.querySelector("#search-text").addEventListener("input", function (e) {
 
 document.querySelector("#new-todo").addEventListener("submit", function (e) {
   e.preventDefault;
-  toDo.push({
-    title: e.target.elements.text.value,
-    completed: false,
-  });
-  localStorage.setItem("todo", JSON.stringify(toDo));
-  renderToDos(toDo, filters);
-  e.target.elements.text.value = "";
+  if (e.target.elements.text.value !== "") {
+    toDo.push({
+      title: e.target.elements.text.value,
+      completed: false,
+    });
+  } else {
+    alert("please enter text");
+  }
+  saveToDos();
 });
-console.log(toDo);
