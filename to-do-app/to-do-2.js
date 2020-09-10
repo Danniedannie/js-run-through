@@ -5,12 +5,6 @@ const filters = {
   hideCompleted: false,
 };
 
-const incompleteToDos = toDo.filter(function (todo) {
-  return !todo.completed;
-});
-
-document.querySelector("#todos").innerHTML = "";
-
 renderToDos(toDo, filters);
 
 document.querySelector("#search-text").addEventListener("input", function (e) {
