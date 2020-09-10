@@ -1,37 +1,11 @@
-let notes = [];
+const notes = getSavedNotes();
 
 const filters = {
   searchText: "",
 };
-
-//check for existing saved data
-const notesJSON = localStorage.getItem("notes");
-
-if (notesJSON !== null) {
-  notes = JSON.parse(notesJSON);
-}
-
-const renderNotes = function (notes, filters) {
-  const filteredNotes = notes.filter(function (note) {
-    return note.title.toLowerCase().includes(filters.searchText.toLowerCase());
-  });
-
-  document.querySelector("#notes").innerHTML = "";
-
-  filteredNotes.forEach(function (note) {
-    const noteEl = document.createElement("p");
-    if (note.title.length > 0) {
-      noteEl.textContent = note.title;
-    } else {
-      noteEl.textContent = "unamed note";
-    }
-    document.querySelector("#notes").appendChild(noteEl);
-  });
-};
-
 renderNotes(notes, filters);
 
-document.querySelector("#testing").addEventListener("click", function (e) {
+document.querySelector("#hello2").addEventListener("click", function (e) {
   notes.push({
     title: e.target.value,
     body: "",
